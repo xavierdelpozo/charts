@@ -981,7 +981,7 @@ prometheus:
   ## - url: http://remote1/push
   ##
   remoteWrite: []
-  ## @param prometheus.enableRemoteWriteReceiver Enable Prometheus to be used as a receiver for the Prometheus remote write protocol. Defaults to the value of false.
+  ## @param prometheus.enableRemoteWriteReceiver Enable Prometheus to be used as a receiver for the Prometheus remote write protocol.
   ##
   enableRemoteWriteReceiver: false
   ## @param prometheus.storageSpec Prometheus StorageSpec for persistent data
