@@ -9,6 +9,18 @@ dependencies:
     tags:
       - bitnami-common
     version: 2.x.x
+  - condition: highAvailability.enabled
+    name: zookeeper
+    repository: oci://registry-1.docker.io/bitnamicharts
+    tags:
+      - bitnami-zookeeper
+    version: 11.x.x
+  - condition: highAvailability.enabled
+    name: minio
+    repository: oci://registry-1.docker.io/bitnamicharts
+    tags:
+      - bitnami-minio
+    version: 12.x.x
 description: Apache Flink is a framework and distributed processing engine for stateful computations over unbounded and bounded data streams.
 home: https://bitnami.com
 icon: https://bitnami.com/assets/stacks/flink/img/flink-stack-220x234.png

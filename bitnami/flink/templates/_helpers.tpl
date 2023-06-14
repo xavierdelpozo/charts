@@ -42,3 +42,42 @@ Create the name of the service account to use for the jobmanager
     {{ default "default" .Values.jobmanager.serviceAccount.name }}
 {{- end -}}
 {{- end -}}
+
+{{/*
+Create the name of the headless service
+*/}}
+{{- define "flink.headlessServiceName" -}}
+{{-  printf "%s-headless" (include "common.names.fullname" .) -}}
+{{- end -}}
+
+
+{{/*
+Create a default fully qualified app name.
+We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
+*/}}
+{{- define "flink.zookeeper.fullname" -}}
+{{- include "common.names.dependency.fullname" (dict "chartName" "zookeeper" "chartValues" .Values.zookeeper "context" $) -}}
+{{- end -}}
+
+{{/*
+Create a default fully qualified app name.
+We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
+*/}}
+{{- define "flink.minio.uri" -}}
+{{- printf "s3://%s:%d/%s" (include "common.names.dependency.fullname"  (dict "chartName" "minio" "chartValues" .Values.minio "context" $)) (.Values.minio.service.ports.api | int) .Values.minio.defaultBuckets -}}
+{{- end -}}
+
+{{/*
+Create a default fully qualified app name.
+We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
+*/}}
+{{- define "flink.zookeeper.fullAddress" -}}
+    {{ printf "%s:%d" (include "flink.zookeeper.fullname" .) (.Values.zookeeper.service.ports.client | int) }}
+{{- end -}}
+
+{{/*
+Return the proper install_plugins initContainer image name
+*/}}
+{{- define "flink.libsJob.image" -}}
+{{ include "common.images.image" (dict "imageRoot" .Values.libs.image "global" .Values.global) }}
+{{- end -}}

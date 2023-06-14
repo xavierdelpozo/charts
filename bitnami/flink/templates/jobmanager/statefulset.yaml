@@ -1,6 +1,5 @@
-{{- if false }}
-apiVersion: {{ include "common.capabilities.deployment.apiVersion" . }}
-kind: Deployment
+apiVersion: {{ include "common.capabilities.statefulset.apiVersion" . }}
+kind: StatefulSet
 metadata:
   name:  {{ include "flink.jobmanager.fullname" . }}
   namespace: {{ include "common.names.namespace" . | quote }}
@@ -17,7 +16,8 @@ spec:
   selector:
     matchLabels: {{- include "common.labels.matchLabels" . | nindent 6 }}
   replicas: {{ .Values.jobmanager.replicaCount }}
-  {{- if .Values.jobmanager.updateStrategy }}
+  serviceName: {{ include "flink.headlessServiceName" . }}
+  {{- if and .Values.jobmanager.updateStrategy (not .Values.highAvailability.enabled) }}
   strategy: {{- toYaml .Values.jobmanager.updateStrategy | nindent 4 }}
   {{- end }}
   template:
@@ -30,11 +30,15 @@ spec:
         {{- end }}
       {{- if .Values.jobmanager.podAnnotations }}
       annotations:
+        service.alpha.kubernetes.io/tolerate-endpoint-disruptive-updates: "true"
         {{- if .Values.jobmanager.podAnnotations }}
         {{- include "common.tplvalues.render" (dict "value" .Values.jobmanager.podAnnotations "context" $) | nindent 8 }}
         {{- end }}
       {{- end }}
     spec:
+      dnsConfig:
+        searches:
+          - jobmanager-x.default.svc.cluster.local
       {{- if .Values.jobmanager.schedulerName }}
       schedulerName: {{ .Values.jobmanager.schedulerName }}
       {{- end }}
@@ -60,11 +64,27 @@ spec:
       topologySpreadConstraints: {{- include "common.tplvalues.render" (dict "value" .Values.jobmanager.topologySpreadConstraints "context" $) | nindent 8 }}
       {{- end }}
       initContainers:
+        - name: {{ printf "%s-install-libs-initcontainer" (include "common.names.fullname" .) }}
+          image: {{ include "flink.libsJob.image" . }}
+          imagePullPolicy: {{ .Values.libs.image.pullPolicy  }}
+          command: [ "sh",
+                     "-e",
+                     "/tmp/scripts/install_libs.sh" ]
+          resources: {{- toYaml .Values.libs.resources | nindent 12 }}
+          securityContext: {{- .Values.libs.containerSecurityContext | toYaml | nindent 12 }}
+          volumeMounts:
+            - name: install-libs
+              mountPath: /tmp/scripts/
+            - name: provisioning
+              mountPath: /bitnami/flink-provisioning
+          {{- if .Values.libs.resources }}
+          resources: {{- toYaml .Values.libs.resources | nindent 12 }}
+          {{- end }}
       {{- if .Values.jobmanager.initContainers }}
       {{- include "common.tplvalues.render" (dict "value" .Values.jobmanager.initContainers "context" $) | nindent 8 }}
       {{- end }}
       containers:
-        - name: flink-jobmanager
+        - name: {{ include "flink.jobmanager.fullname" . }}
           image: {{ include "flink.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
           {{- if .Values.jobmanager.containerSecurityContext.enabled }}
@@ -84,11 +104,11 @@ spec:
           lifecycle: {{- include "common.tplvalues.render" (dict "value" .Values.jobmanager.lifecycleHooks "context" $) | nindent 12 }}
           {{- end }}
           ports:
-            - name: tcp-rpc
+            - name: rpc
               containerPort: {{ .Values.jobmanager.containerPorts.rpc }}
             - name: http
               containerPort: {{ .Values.jobmanager.containerPorts.http }}
-            - name: tcp-blob
+            - name: blob
               containerPort: {{ .Values.jobmanager.containerPorts.blob }}
           env:
             - name: FLINK_MODE
@@ -107,48 +127,97 @@ spec:
               value: {{ .Values.jobmanager.containerPorts.http | quote }}
             - name: FLINK_CFG_REST_BIND__ADDRESS
               value: 0.0.0.0
-            - name: FLINK_CFG_BLOB_SERVER_PORT
-              value: {{ .Values.jobmanager.containerPorts.blob | quote }}
+            - name: FLINK_CFG_HIGH__AVAILABILITY_STORAGE_DIR
+              value: {{ .Values.highAvailability.storageDir}}
+            - name: FLINK_CFG_HIGH__AVAILABILITY_TYPE
+              value: zookeeper
+            - name: FLINK_CFG_HIGH__AVAILABILITY_ZOOKEEPER_QUORUM
+              value: flink-zookeeper:2181
+            - name: FLINK_CFG_HIGH__AVAILABILITY_ZOOKEEPER_PATH_ROOT
+              value: {{ .Values.highAvailability.pathRoot }}
+            - name: FLINK_CFG_HIGH__AVAILABILITY_ZOOKEEPER_CLUSTER__ID
+              value: {{ .Values.highAvailability.clusterId }}
+            - name: FLINK_CFG_S3_ENDPOINT
+              value: http://flink-minio:9000
+            - name: FLINK_CFG_S3_ACCESS__KEY
+              value: {{ .Values.minio.auth.rootUser }}
+            - name: FLINK_CFG_S3_SECRET__KEY
+              value: {{ .Values.minio.auth.rootPassword }}
+            - name: FLINK_CFG_S3_ACCESS__KEY
+              value: {{ .Values.minio.auth.rootUser }}
+            - name: FLINK_CFG_S3_SECRET__KEY
+              value: {{ .Values.minio.auth.rootPassword }}
+            - name: FLINK_CFG_FS_S3A_ACCESS_KEY
+              value: {{ .Values.minio.auth.rootUser }}
+            - name: FLINK_CFG_FS_S3A_SECRET_KEY
+              value: {{ .Values.minio.auth.rootPassword }}
+            - name: AWS_ACCESS_KEY
+              value: {{ .Values.minio.auth.rootUser }}
+            - name: AWS_ACCESS_KEY_ID
+              value: {{ .Values.minio.auth.rootUser }}
+            - name: AWS_SECRET_KEY
+              value: {{ .Values.minio.auth.rootPassword }}
+            - name: AWS_SECRET_ACCESS_KEY
+              value: {{ .Values.minio.auth.rootPassword }}
+            - name: FLINK_CFG_ZOOKEEPER_SASL_DISABLE
+              value: "true"
+            - name: FLINK_CFG_HIGH__AVAILABILITY_ZOOKEEPER_SASL_DISABLE
+              value: "true"
+            - name: FLINK_CFG_S3_PATH_STYLE_ACCESS
+              value: "true"
+
+
+
+
+
+
+
             - name: BITNAMI_DEBUG
               value: {{ ternary "true" "false" .Values.image.debug | quote }}
-            {{- if .Values.jobmanager.extraEnvVars }}
-              {{- include "common.tplvalues.render" (dict "value" .Values.jobmanager.extraEnvVars "context" $) | nindent 12 }}
-            {{- end }}
+                      {{- if .Values.jobmanager.extraEnvVars }}
+                        {{- include "common.tplvalues.render" (dict "value" .Values.jobmanager.extraEnvVars "context" $) | nindent 12 }}
+                      {{- end }}
           envFrom:
-            {{- if .Values.jobmanager.extraEnvVarsCM }}
+                    {{- if .Values.jobmanager.extraEnvVarsCM }}
             - configMapRef:
                 name: {{ .Values.jobmanager.extraEnvVarsCM }}
-            {{- end }}
-            {{- if .Values.jobmanager.extraEnvVarsSecret }}
+                    {{- end }}
+                    {{- if .Values.jobmanager.extraEnvVarsSecret }}
             - secretRef:
                 name: {{ .Values.jobmanager.extraEnvVarsSecret }}
-            {{- end }}
+                    {{- end }}
           {{- if not .Values.diagnosticMode.enabled }}
           {{- if .Values.jobmanager.customStartupProbe }}
           startupProbe: {{- include "common.tplvalues.render" (dict "value" .Values.jobmanager.customStartupProbe "context" $) | nindent 12 }}
           {{- else if .Values.jobmanager.startupProbe.enabled }}
           startupProbe: {{- include "common.tplvalues.render" (dict "value" (omit .Values.jobmanager.startupProbe "enabled") "context" $) | nindent 12 }}
-            tcpSocket:
-              port: tcp-rpc
+            httpGet:
+              path: /
+              port: admin
           {{- end }}
           {{- if .Values.jobmanager.customLivenessProbe }}
           livenessProbe: {{- include "common.tplvalues.render" (dict "value" .Values.jobmanager.customLivenessProbe "context" $) | nindent 12 }}
           {{- else if .Values.jobmanager.livenessProbe.enabled }}
           livenessProbe: {{- include "common.tplvalues.render" (dict "value" (omit .Values.jobmanager.livenessProbe "enabled") "context" $) | nindent 12 }}
-            tcpSocket:
-              port: tcp-rpc
+            httpGet:
+              path: /
+              port: admin
           {{- end }}
           {{- if .Values.jobmanager.customReadinessProbe }}
           readinessProbe: {{- include "common.tplvalues.render" (dict "value" .Values.jobmanager.customReadinessProbe "context" $) | nindent 12 }}
           {{- else if .Values.jobmanager.readinessProbe.enabled }}
           readinessProbe: {{- include "common.tplvalues.render" (dict "value" (omit .Values.jobmanager.readinessProbe "enabled") "context" $) | nindent 12 }}
-            tcpSocket:
-              port: tcp-rpc
+            httpGet:
+              path: /
+              port: admin
           {{- end }}
           {{- end }}
           {{- if .Values.jobmanager.resources }}
           resources: {{- toYaml .Values.jobmanager.resources | nindent 12 }}
           {{- end }}
+          volumeMounts:
+            - name: provisioning
+              mountPath: /bitnami/flink-provisioning
           {{- if .Values.jobmanager.extraVolumeMounts }}
             {{- include "common.tplvalues.render" ( dict "value" .Values.jobmanager.extraVolumeMounts "context" $) | nindent 12 }}
           {{- end }}
@@ -156,7 +225,16 @@ spec:
         {{- include "common.tplvalues.render" ( dict "value" .Values.jobmanager.sidecars "context" $) | nindent 8 }}
         {{- end }}
       volumes:
+       {{- if .Values.libs.install }}
+        - name: install-libs
+          configMap:
+            name: {{ printf "%s-install-libs-configmap" (include "common.names.fullname" .) }}
+            items:
+              - key: install_libs.sh
+                path: install_libs.sh
+        - name: provisioning
+          emptyDir: {}
+        {{- end }}
         {{- if .Values.jobmanager.extraVolumes }}
         {{- include "common.tplvalues.render" ( dict "value" .Values.jobmanager.extraVolumes "context" $) | nindent 8 }}
         {{- end }}
-{{- end }}

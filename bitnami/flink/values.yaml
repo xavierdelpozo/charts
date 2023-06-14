@@ -69,7 +69,7 @@ diagnosticMode:
 image:
   registry: docker.io
   repository: bitnami/flink
-  tag: 1.17.1-debian-11-r1
+  tag: 1.17.1-debian-11-r6
   digest: ""
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -695,3 +695,130 @@ taskmanager:
   ## @param taskmanager.sidecars Add additional sidecar containers to the flink pods
   ##
   sidecars: []
+
+
+## @section Apache FLink plugin provisioning parameters
+##
+libs:
+  ## @param plugins.install List of plugin URLS to download and install
+  ## For example:
+  ## plugins:
+  ##  install:
+  ##    - "https://repo1.maven.org/maven2/org/apache/flink/flink-s3-fs-hadoop/1.16.1/flink-s3-fs-hadoop-1.16.1.jar"
+  ##    - "https://repo1.maven.org/maven2/org/apache/flink/flink-s3-fs-presto/1.16.1/flink-s3-fs-presto-1.16.1.jar"
+  ##
+  install:
+    - url: "https://repo1.maven.org/maven2/org/apache/flink/flink-s3-fs-hadoop/1.16.0/flink-s3-fs-hadoop-1.16.0.jar"
+      name: flink-s3-fs-hadoop-1.16.0
+  ## @param plugins.netrcCreds .netrc secret file with a key "netrc" to use basic auth while downloading plugins
+  ##
+  netrcCreds: ""
+  ## @param plugins.noCheckCertificate Set to true to not validate the server's certificate to download plugin
+  ##
+  noCheckCertificate: true
+  ## Bitnami Shell image
+  ## ref: https://hub.docker.com/r/bitnami/bitnami-shell/tags/
+  ## @param plugins.image.registry Bitnami Shell image registry
+  ## @param plugins.image.repository Bitnami Shell image repository
+  ## @param plugins.image.tag Bitnami Shell image tag (immutable tags are recommended)
+  ## @param plugins.image.digest Bitnami Shell image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
+  ## @param plugins.image.pullPolicy Bitnami Shell image pull policy
+  ## @param plugins.image.pullSecrets Bitnami Shell image pull secrets
+  ##
+  image:
+    registry: docker.io
+    repository: bitnami/bitnami-shell
+    tag: 11-debian-11-r63
+    digest: ""
+    pullPolicy: IfNotPresent
+    ## Optionally specify an array of imagePullSecrets.
+    ## Secrets must be manually created in the namespace.
+    ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+    ## e.g:
+    ## pullSecrets:
+    ##   - myRegistryKeySecretName
+    ##
+    pullSecrets: []
+  ## Init container's resource requests and limits
+  ## ref: https://kubernetes.io/docs/user-guide/compute-resources/
+  ## @param plugins.resources.limits The resources limits for the init container
+  ## @param plugins.resources.requests The requested resources for the init container
+  ##
+  resources:
+    limits: {}
+    requests: {}
+  ## Init container Container Security Context
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
+  ## @param plugins.containerSecurityContext.runAsUser Set init container's Security Context runAsUser
+  ## NOTE: when runAsUser is set to special value "auto", init container will try to chown the
+  ##   data folder to auto-determined user&group, using commands: `id -u`:`id -G | cut -d" " -f2`
+  ##   "auto" is especially useful for OpenShift which has scc with dynamic user ids (and 0 is not allowed)
+  ##
+  containerSecurityContext:
+    runAsUser: 0
+    runAsNonRoot: false
+
+highAvailability:
+  enabled: true
+  pathRoot: /flink
+  clusterId: cluster
+  storageDir: s3://flink-minio/recovery
+
+minio:
+  minio:
+    enabled: true
+    auth:
+      rootUser: minio-flink
+      rootPassword: minio123
+    defaultBuckets: flink-cluster
+
+## ZooKeeper chart configuration
+## https://github.com/bitnami/charts/blob/main/bitnami/zookeeper/values.yaml
+##
+zookeeper:
+  ## @param zookeeper.enabled Switch to enable or disable the ZooKeeper helm chart. Must be false if you use Kraft mode.
+  ##
+  enabled: false
+  ## @param zookeeper.replicaCount Number of ZooKeeper nodes
+  ##
+  replicaCount: 1
+  ## ZooKeeper authenticaiton
+  ##
+  auth:
+    client:
+      ## @param zookeeper.auth.client.enabled Enable ZooKeeper auth
+      ##
+      enabled: true
+      ## @param zookeeper.auth.client.clientUser User that will use ZooKeeper clients to auth
+      ##
+      clientUser: "flink"
+      ## @param zookeeper.auth.client.clientPassword Password that will use ZooKeeper clients to auth
+      ##
+      clientPassword: "flink"
+      ## @param zookeeper.auth.client.serverUsers Comma, semicolon or whitespace separated list of user to be created. Specify them as a string, for example: "user1,user2,admin"
+      ##
+      serverUsers: "flink"
+      ## @param zookeeper.auth.client.serverPasswords Comma, semicolon or whitespace separated list of passwords to assign to users when created. Specify them as a string, for example: "pass4user1, pass4user2, pass4admin"
+      ##
+      serverPasswords: "flink"
+  ## ZooKeeper Persistence parameters
+  ## ref: https://kubernetes.io/docs/user-guide/persistent-volumes/
+  ## @param zookeeper.persistence.enabled Enable persistence on ZooKeeper using PVC(s)
+  ## @param zookeeper.persistence.storageClass Persistent Volume storage class
+  ## @param zookeeper.persistence.accessModes Persistent Volume access modes
+  ## @param zookeeper.persistence.size Persistent Volume size
+  ##
+  persistence:
+    enabled: true
+    storageClass: ""
+    accessModes:
+      - ReadWriteOnce
+    size: 8Gi
+
+## External Zookeeper Configuration
+## All of these values are only used if `zookeeper.enabled=false`
+##
+externalZookeeper:
+  ## @param externalZookeeper.servers List of external zookeeper servers to use. Typically used in combination with 'zookeeperChrootPath'. Must be empty if you use Kraft mode.
+  ##
+  servers: []

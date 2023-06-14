@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ printf "%s-install-libs-configmap" (include "common.names.fullname" .) }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}
+  {{- if .Values.commonAnnotations }}
+  annotations:
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
+  {{- end }}
+data:
+  install_libs.sh: |-
+    #[ -e /bitnami/flink-provisioning/plugins/] && rm /bitnami/flink-provisioning/plugins/
+    mkdir -p /bitnami/flink-provisioning/plugins/s3/
+    cd /bitnami/flink-provisioning/plugins/s3/
+    {{- range $index, $val := .Values.libs.install }}
+    curl {{ if $.Values.libs.noCheckCertificate }}--insecure{{ end }} {{ if $.Values.libs.netrcCreds }}--netrc-file /root/.netrc{{ end }} -fsSLO {{ $val.url | quote }}
+    {{- end }}
