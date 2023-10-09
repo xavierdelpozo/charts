@@ -55,7 +55,7 @@ extraDeploy: []
 ## ref: https://hub.docker.com/r/bitnami/aspnet-core/tags/
 ## @param image.registry ASP.NET Core image registry
 ## @param image.repository ASP.NET Core image repository
-## @param image.tag ASP.NET Core image tag (immutable tags are recommended)
+## @skip image.tag ASP.NET Core image tag (immutable tags are recommended)
 ## @param image.digest ASP.NET Core image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy ASP.NET Core image pull policy
 ## @param image.pullSecrets ASP.NET Core image pull secrets

@@ -64,7 +64,7 @@ diagnosticMode:
 ## ref: https://hub.docker.com/r/bitnami/logstash/tags/
 ## @param image.registry Logstash image registry
 ## @param image.repository Logstash image repository
-## @param image.tag Logstash image tag (immutable tags are recommended)
+## @skip image.tag Logstash image tag (immutable tags are recommended)
 ## @param image.digest Logstash image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy Logstash image pull policy
 ## @param image.pullSecrets Specify docker-registry secret names as an array

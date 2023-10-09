@@ -81,7 +81,7 @@ serviceBindings:
 ## ref: https://hub.docker.com/r/bitnami/mariadb/tags/
 ## @param image.registry MariaDB image registry
 ## @param image.repository MariaDB image repository
-## @param image.tag MariaDB image tag (immutable tags are recommended)
+## @skip image.tag MariaDB image tag (immutable tags are recommended)
 ## @param image.digest MariaDB image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy MariaDB image pull policy
 ## @param image.pullSecrets Specify docker-registry secret names as an array

@@ -64,7 +64,7 @@ diagnosticMode:
 ## ref: https://hub.docker.com/r/bitnami/memcached/tags/
 ## @param image.registry Memcached image registry
 ## @param image.repository Memcached image repository
-## @param image.tag Memcached image tag (immutable tags are recommended)
+## @skip image.tag Memcached image tag (immutable tags are recommended)
 ## @param image.digest Memcached image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy Memcached image pull policy
 ## @param image.pullSecrets Specify docker-registry secret names as an array

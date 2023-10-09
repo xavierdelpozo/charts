@@ -67,7 +67,7 @@ diagnosticMode:
 ## ref: https://hub.docker.com/r/bitnami/cassandra/tags/
 ## @param image.registry Cassandra image registry
 ## @param image.repository Cassandra image repository
-## @param image.tag Cassandra image tag (immutable tags are recommended)
+## @skip image.tag Cassandra image tag (immutable tags are recommended)
 ## @param image.digest Cassandra image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy image pull policy
 ## @param image.pullSecrets Cassandra image pull secrets

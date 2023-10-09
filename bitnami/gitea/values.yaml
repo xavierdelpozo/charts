@@ -53,7 +53,7 @@ extraDeploy: []
 ## ref: https://hub.docker.com/r/bitnami/gitea/tags/
 ## @param image.registry Gitea image registry
 ## @param image.repository Gitea Image name
-## @param image.tag Gitea Image tag
+## @skip image.tag Gitea Image tag
 ## @param image.digest Gitea image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy Gitea image pull policy
 ## @param image.pullSecrets Specify docker-registry secret names as an array

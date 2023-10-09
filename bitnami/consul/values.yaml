@@ -67,7 +67,7 @@ diagnosticMode:
 ## ref: https://hub.docker.com/r/bitnami/consul/tags/
 ## @param image.registry HashiCorp Consul image registry
 ## @param image.repository HashiCorp Consul image repository
-## @param image.tag HashiCorp Consul image tag (immutable tags are recommended)
+## @skip image.tag HashiCorp Consul image tag (immutable tags are recommended)
 ## @param image.digest HashiCorp Consul image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy HashiCorp Consul image pull policy
 ## @param image.pullSecrets HashiCorp Consul image pull secrets

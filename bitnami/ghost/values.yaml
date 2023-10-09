@@ -64,7 +64,7 @@ diagnosticMode:
 ## ref: https://hub.docker.com/r/bitnami/ghost/tags/
 ## @param image.registry Ghost image registry
 ## @param image.repository Ghost image repository
-## @param image.tag Ghost image tag (immutable tags are recommended)
+## @skip image.tag Ghost image tag (immutable tags are recommended)
 ## @param image.digest Ghost image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy Ghost image pull policy
 ## @param image.pullSecrets Ghost image pull secrets

@@ -67,7 +67,7 @@ diagnosticMode:
 ## ref: https://hub.docker.com/r/bitnami/sonarqube/tags/
 ## @param image.registry SonarQube&trade; image registry
 ## @param image.repository SonarQube&trade; image repository
-## @param image.tag SonarQube&trade; image tag (immutable tags are recommended)
+## @skip image.tag SonarQube&trade; image tag (immutable tags are recommended)
 ## @param image.digest SonarQube&trade; image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy SonarQube&trade; image pull policy
 ## @param image.pullSecrets SonarQube&trade; image pull secrets

@@ -63,7 +63,7 @@ diagnosticMode:
 ## ref: https://hub.docker.com/r/bitnami/redis/tags/
 ## @param image.registry WildFly image registry
 ## @param image.repository WildFly image repository
-## @param image.tag WildFly image tag (immutable tags are recommended)
+## @skip image.tag WildFly image tag (immutable tags are recommended)
 ## @param image.digest WildFly image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy WildFly image pull policy
 ## @param image.pullSecrets [array] WildFly image pull secrets
