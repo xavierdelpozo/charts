@@ -36,8 +36,10 @@ Looking to use Discoursereg; in production? Try [VMware Application Catalog](htt
 To install the chart with the release name `my-release`:
 
 ```console
-helm install my-release oci://registry-1.docker.io/bitnamicharts/discourse
+helm install my-release oci://registry_name/repository_name/discourse
 ```
+
+> Please replace the registry_name and repository_name placeholders with a reference to your chart registry & repository.
 
 The command deploys Discourse on the Kubernetes cluster in the default configuration. The [Parameters](#parameters) section lists the parameters that can be configured during installation.
 
@@ -83,8 +85,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | Name                            | Description                                                                                                              | Value                 |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | --------------------- |
 | `image.registry`                | Discourse image registry                                                                                                 | `docker.io`           |
-| `image.repository`              | Discourse image repository                                                                                               | `bitnami/discourse`   |
-| `image.tag`                     | Discourse image tag                                                                                                      | `3.1.1-debian-11-r13` |
+| `image.repository`              | Discourse image repository                                                                                               | `repository_name/discourse`   |
 | `image.digest`                  | Discourse image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag                | `""`                  |
 | `image.pullPolicy`              | Discourse image pull policy                                                                                              | `IfNotPresent`        |
 | `image.pullSecrets`             | Discourse image pull secrets                                                                                             | `[]`                  |
@@ -251,8 +252,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | `volumePermissions.enabled`                            | Enable init container that changes the owner and group of the persistent volume                                                   | `false`            |
 | `volumePermissions.image.registry`                     | Init container volume-permissions image registry                                                                                  | `docker.io`        |
-| `volumePermissions.image.repository`                   | Init container volume-permissions image repository                                                                                | `bitnami/os-shell` |
-| `volumePermissions.image.tag`                          | Init container volume-permissions image tag (immutable tags are recommended)                                                      | `11-debian-11-r77` |
+| `volumePermissions.image.repository`                   | Init container volume-permissions image repository                                                                                | `repository_name/os-shell` |
 | `volumePermissions.image.digest`                       | Init container volume-permissions image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag | `""`               |
 | `volumePermissions.image.pullPolicy`                   | Init container volume-permissions image pull policy                                                                               | `IfNotPresent`     |
 | `volumePermissions.image.pullSecrets`                  | Init container volume-permissions image pull secrets                                                                              | `[]`               |
@@ -332,8 +332,10 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 helm install my-release \
   --set auth.username=admin,auth.password=password \
-    oci://registry-1.docker.io/bitnamicharts/discourse
+    oci://registry_name/repository_name/discourse
 ```
+
+> Please replace the registry_name and repository_name placeholders with a reference to your chart registry & repository.
 
 The above command sets the Discourse administrator account username and password to `admin` and `password` respectively.
 
@@ -342,8 +344,10 @@ The above command sets the Discourse administrator account username and password
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-helm install my-release -f values.yaml oci://registry-1.docker.io/bitnamicharts/discourse
+helm install my-release -f values.yaml oci://registry_name/repository_name/discourse
 ```
+
+> Please replace the registry_name and repository_name placeholders with a reference to your chart registry & repository.
 
 > **Tip**: You can use the default [values.yaml](values.yaml)
 
@@ -364,9 +368,11 @@ By default, this Chart only deploys a single pod running Discourse. Should you w
 1. Create a conventional release, that will be scaled later:
 
     ```console
-    helm install my-release oci://registry-1.docker.io/bitnamicharts/discourse
+    helm install my-release oci://registry_name/repository_name/discourse
     ...
     ```
+
+    > Please replace the registry_name and repository_name placeholders with a reference to your chart registry & repository.
 
 2. Wait for the release to complete and Discourse to be running successfully.
 
@@ -381,8 +387,10 @@ By default, this Chart only deploys a single pod running Discourse. Should you w
 3. Perform an upgrade specifying the number of replicas and the credentials used.
 
     ```console
-    helm upgrade my-release --set replicaCount=2,discourse.skipInstall=true oci://registry-1.docker.io/bitnamicharts/discourse
+    helm upgrade my-release --set replicaCount=2,discourse.skipInstall=true oci://registry_name/repository_name/discourse
     ```
+
+    > Please replace the registry_name and repository_name placeholders with a reference to your chart registry & repository.
 
     Note that for this to work properly, you need to provide ReadWriteMany PVCs. If you don't have a provisioner for this type of storage, we recommend that you install the NFS provisioner chart (with the correct parameters, such as `persistence.enabled=true` and `persistence.size=10Gi`) and map it to a RWO volume.
 
