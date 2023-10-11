@@ -80,7 +80,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | -------------------- | ------------------------------------------------------------------------------------------------------------ | --------------------- |
 | `image.registry`     | ASP.NET Core image registry                                                                                  | `docker.io`           |
 | `image.repository`   | ASP.NET Core image repository                                                                                | `bitnami/aspnet-core` |
-| `image.tag`          | ASP.NET Core image tag (immutable tags are recommended)                                                      | `7.0.12-debian-11-r0` |
 | `image.digest`       | ASP.NET Core image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag | `""`                  |
 | `image.pullPolicy`   | ASP.NET Core image pull policy                                                                               | `IfNotPresent`        |
 | `image.pullSecrets`  | ASP.NET Core image pull secrets                                                                              | `[]`                  |
@@ -163,7 +162,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | `appFromExternalRepo.enabled`                   | Enable to download/build ASP.NET Core app from external git repository                                   | `true`                                               |
 | `appFromExternalRepo.clone.image.registry`      | Git image registry                                                                                       | `docker.io`                                          |
 | `appFromExternalRepo.clone.image.repository`    | Git image repository                                                                                     | `bitnami/git`                                        |
-| `appFromExternalRepo.clone.image.tag`           | Git image tag (immutable tags are recommended)                                                           | `2.42.0-debian-11-r41`                               |
 | `appFromExternalRepo.clone.image.digest`        | Git image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag      | `""`                                                 |
 | `appFromExternalRepo.clone.image.pullPolicy`    | Git image pull policy                                                                                    | `IfNotPresent`                                       |
 | `appFromExternalRepo.clone.image.pullSecrets`   | Git image pull secrets                                                                                   | `[]`                                                 |

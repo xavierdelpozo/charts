@@ -64,7 +64,7 @@ diagnosticMode:
 ## ref: https://hub.docker.com/r/bitnami/fluentd/tags/
 ## @param image.registry Fluentd image registry
 ## @param image.repository Fluentd image repository
-## @skip image.tag Fluentd image tag (immutable tags are recommended)
+## @param image.tag Fluentd image tag (immutable tags are recommended)
 ## @param image.pullPolicy Fluentd image pull policy
 ## @param image.pullSecrets Fluentd image pull secrets
 ## @param image.debug Enable image debug mode

@@ -50,7 +50,7 @@ extraDeploy: []
 ## ref: https://hub.docker.com/r/bitnami/drupal/tags/
 ## @param image.registry Drupal image registry
 ## @param image.repository Drupal Image name
-## @skip image.tag Drupal Image tag
+## @param image.tag Drupal Image tag
 ## @param image.digest Drupal image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy Drupal image pull policy
 ## @param image.pullSecrets Specify docker-registry secret names as an array

@@ -83,7 +83,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ---------------------- |
 | `image.registry`                                  | PyTorch image registry                                                                                                   | `docker.io`            |
 | `image.repository`                                | PyTorch image repository                                                                                                 | `bitnami/pytorch`      |
-| `image.tag`                                       | PyTorch image tag (immutable tags are recommended)                                                                       | `2.0.1-debian-11-r140` |
 | `image.digest`                                    | PyTorch image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag                  | `""`                   |
 | `image.pullPolicy`                                | PyTorch image pull policy                                                                                                | `IfNotPresent`         |
 | `image.pullSecrets`                               | Specify docker-registry secret names as an array                                                                         | `[]`                   |
@@ -178,7 +177,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
 | `git.registry`                         | Git image registry                                                                                                                                        | `docker.io`            |
 | `git.repository`                       | Git image repository                                                                                                                                      | `bitnami/git`          |
-| `git.tag`                              | Git image tag (immutable tags are recommended)                                                                                                            | `2.42.0-debian-11-r41` |
 | `git.digest`                           | Git image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag                                                       | `""`                   |
 | `git.pullPolicy`                       | Git image pull policy                                                                                                                                     | `IfNotPresent`         |
 | `git.pullSecrets`                      | Specify docker-registry secret names as an array                                                                                                          | `[]`                   |

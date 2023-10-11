@@ -82,7 +82,7 @@ diagnosticMode:
 ## ref: https://hub.docker.com/r/bitnami/redis/tags/
 ## @param image.registry Redis&reg; image registry
 ## @param image.repository Redis&reg; image repository
-## @skip image.tag Redis&reg; image tag (immutable tags are recommended)
+## @param image.tag Redis&reg; image tag (immutable tags are recommended)
 ## @param image.digest Redis&reg; image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy Redis&reg; image pull policy
 ## @param image.pullSecrets Redis&reg; image pull secrets

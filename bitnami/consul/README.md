@@ -85,7 +85,6 @@ helm delete --purge my-release
 | ------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------- |
 | `image.registry`                | HashiCorp Consul image registry                                                                                  | `docker.io`            |
 | `image.repository`              | HashiCorp Consul image repository                                                                                | `bitnami/consul`       |
-| `image.tag`                     | HashiCorp Consul image tag (immutable tags are recommended)                                                      | `1.16.2-debian-11-r15` |
 | `image.digest`                  | HashiCorp Consul image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag | `""`                   |
 | `image.pullPolicy`              | HashiCorp Consul image pull policy                                                                               | `IfNotPresent`         |
 | `image.pullSecrets`             | HashiCorp Consul image pull secrets                                                                              | `[]`                   |

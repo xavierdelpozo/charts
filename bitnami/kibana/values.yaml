@@ -64,7 +64,7 @@ diagnosticMode:
 ## ref: https://hub.docker.com/r/bitnami/kibana/tags/
 ## @param image.registry Kibana image registry
 ## @param image.repository Kibana image repository
-## @skip image.tag Kibana image tag (immutable tags are recommended)
+## @param image.tag Kibana image tag (immutable tags are recommended)
 ## @param image.digest Kibana image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy Kibana image pull policy
 ## @param image.pullSecrets Specify docker-registry secret names as an array

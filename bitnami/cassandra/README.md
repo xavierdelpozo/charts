@@ -81,7 +81,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------------- |
 | `image.registry`              | Cassandra image registry                                                                                               | `docker.io`           |
 | `image.repository`            | Cassandra image repository                                                                                             | `bitnami/cassandra`   |
-| `image.tag`                   | Cassandra image tag (immutable tags are recommended)                                                                   | `4.1.3-debian-11-r69` |
 | `image.digest`                | Cassandra image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag              | `""`                  |
 | `image.pullPolicy`            | image pull policy                                                                                                      | `IfNotPresent`        |
 | `image.pullSecrets`           | Cassandra image pull secrets                                                                                           | `[]`                  |

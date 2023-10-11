@@ -49,7 +49,7 @@ extraDeploy: []
 ## ref: https://hub.docker.com/r/bitnami/minio/tags/
 ## @param image.registry MinIO&reg; image registry
 ## @param image.repository MinIO&reg; image repository
-## @skip image.tag MinIO&reg; image tag (immutable tags are recommended)
+## @param image.tag MinIO&reg; image tag (immutable tags are recommended)
 ## @param image.digest MinIO&reg; image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy Image pull policy
 ## @param image.pullSecrets Specify docker-registry secret names as an array
@@ -80,7 +80,7 @@ image:
 ## ref: https://hub.docker.com/r/bitnami/minio-client/tags/
 ## @param clientImage.registry MinIO&reg; Client image registry
 ## @param clientImage.repository MinIO&reg; Client image repository
-## @skip clientImage.tag MinIO&reg; Client image tag (immutable tags are recommended)
+## @param clientImage.tag MinIO&reg; Client image tag (immutable tags are recommended)
 ## @param clientImage.digest MinIO&reg; Client image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ##
 clientImage:

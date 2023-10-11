@@ -67,7 +67,7 @@ diagnosticMode:
 ## ref: https://hub.docker.com/r/bitnami/apisix/tags/
 ## @param image.registry APISIX image registry
 ## @param image.repository APISIX image repository
-## @skip image.tag APISIX image tag (immutable tags are recommended)
+## @param image.tag APISIX image tag (immutable tags are recommended)
 ## @param image.digest APISIX image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag image tag (immutable tags are recommended)
 ## @param image.pullPolicy APISIX image pull policy
 ## @param image.pullSecrets APISIX image pull secrets

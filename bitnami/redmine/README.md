@@ -92,7 +92,6 @@ helm install my-release oci://registry-1.docker.io/bitnamicharts/redmine --set d
 | ----------------------- | ------------------------------------------------------------------------------------------------------- | -------------------- |
 | `image.registry`        | Redmine image registry                                                                                  | `docker.io`          |
 | `image.repository`      | Redmine image repository                                                                                | `bitnami/redmine`    |
-| `image.tag`             | Redmine image tag (immutable tags are recommended)                                                      | `5.0.6-debian-11-r6` |
 | `image.digest`          | Redmine image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag | `""`                 |
 | `image.pullPolicy`      | Redmine image pull policy                                                                               | `IfNotPresent`       |
 | `image.pullSecrets`     | Redmine image pull secrets                                                                              | `[]`                 |

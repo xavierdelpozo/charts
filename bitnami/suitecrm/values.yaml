@@ -46,7 +46,7 @@ commonLabels: {}
 ## ref: https://hub.docker.com/r/bitnami/suitecrm/tags/
 ## @param image.registry SuiteCRM image registry
 ## @param image.repository SuiteCRM image repository
-## @skip image.tag SuiteCRM image tag (immutable tags are recommended)
+## @param image.tag SuiteCRM image tag (immutable tags are recommended)
 ## @param image.digest SuiteCRM image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy SuiteCRM image pull policy
 ## @param image.pullSecrets Specify docker-registry secret names as an array

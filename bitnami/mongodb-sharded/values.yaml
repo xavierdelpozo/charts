@@ -70,7 +70,7 @@ diagnosticMode:
 ## ref: https://hub.docker.com/r/bitnami/mongodb-sharded/tags/
 ## @param image.registry MongoDB(&reg;) Sharded image registry
 ## @param image.repository MongoDB(&reg;) Sharded Image name
-## @skip image.tag MongoDB(&reg;) Sharded image tag (immutable tags are recommended)
+## @param image.tag MongoDB(&reg;) Sharded image tag (immutable tags are recommended)
 ## @param image.digest MongoDB(&reg;) Sharded image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy MongoDB(&reg;) Sharded image pull policy
 ## @param image.pullSecrets Specify docker-registry secret names as an array

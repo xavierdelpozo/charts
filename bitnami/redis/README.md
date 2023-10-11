@@ -101,7 +101,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | ------------------- | ---------------------------------------------------------------------------------------------------------- | --------------------- |
 | `image.registry`    | Redis&reg; image registry                                                                                  | `docker.io`           |
 | `image.repository`  | Redis&reg; image repository                                                                                | `bitnami/redis`       |
-| `image.tag`         | Redis&reg; image tag (immutable tags are recommended)                                                      | `7.2.1-debian-11-r24` |
 | `image.digest`      | Redis&reg; image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag | `""`                  |
 | `image.pullPolicy`  | Redis&reg; image pull policy                                                                               | `IfNotPresent`        |
 | `image.pullSecrets` | Redis&reg; image pull secrets                                                                              | `[]`                  |

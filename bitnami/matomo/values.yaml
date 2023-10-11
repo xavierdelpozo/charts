@@ -53,7 +53,7 @@ extraDeploy: []
 ## ref: https://hub.docker.com/r/bitnami/matomo/tags/
 ## @param image.registry Matomo image registry
 ## @param image.repository Matomo Image name
-## @skip image.tag Matomo Image tag
+## @param image.tag Matomo Image tag
 ## @param image.digest Matomo image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy Matomo image pull policy
 ## @param image.pullSecrets Specify docker-registry secret names as an array

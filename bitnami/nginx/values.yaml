@@ -65,7 +65,7 @@ diagnosticMode:
 ## ref: https://hub.docker.com/r/bitnami/nginx/tags/
 ## @param image.registry NGINX image registry
 ## @param image.repository NGINX image repository
-## @skip image.tag NGINX image tag (immutable tags are recommended)
+## @param image.tag NGINX image tag (immutable tags are recommended)
 ## @param image.digest NGINX image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy NGINX image pull policy
 ## @param image.pullSecrets Specify docker-registry secret names as an array

@@ -47,7 +47,7 @@ extraDeploy: []
 ## ref: https://hub.docker.com/r/bitnami/phpmyadmin/tags/
 ## @param image.registry phpMyAdmin image registry
 ## @param image.repository phpMyAdmin image repository
-## @skip image.tag phpMyAdmin image tag (immutable tags are recommended)
+## @param image.tag phpMyAdmin image tag (immutable tags are recommended)
 ## @param image.digest phpMyAdmin image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy Image pull policy
 ## @param image.pullSecrets Specify docker-registry secret names as an array

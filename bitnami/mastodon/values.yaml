@@ -67,7 +67,7 @@ diagnosticMode:
 ## ref: https://hub.docker.com/r/bitnami/mastodon/tags/
 ## @param image.registry Mastodon image registry
 ## @param image.repository Mastodon image repository
-## @skip image.tag Mastodon image tag (immutable tags are recommended)
+## @param image.tag Mastodon image tag (immutable tags are recommended)
 ## @param image.digest Mastodon image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag image tag (immutable tags are recommended)
 ## @param image.pullPolicy Mastodon image pull policy
 ## @param image.pullSecrets Mastodon image pull secrets

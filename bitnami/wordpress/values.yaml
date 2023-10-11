@@ -67,7 +67,7 @@ diagnosticMode:
 ## ref: https://hub.docker.com/r/bitnami/wordpress/tags/
 ## @param image.registry WordPress image registry
 ## @param image.repository WordPress image repository
-## @skip image.tag WordPress image tag (immutable tags are recommended)
+## @param image.tag WordPress image tag (immutable tags are recommended)
 ## @param image.digest WordPress image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy WordPress image pull policy
 ## @param image.pullSecrets WordPress image pull secrets

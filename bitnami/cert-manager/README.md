@@ -83,7 +83,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | `controller.replicaCount`                                | Number of Controller replicas                                                                              | `1`                    |
 | `controller.image.registry`                              | Controller image registry                                                                                  | `docker.io`            |
 | `controller.image.repository`                            | Controller image repository                                                                                | `bitnami/cert-manager` |
-| `controller.image.tag`                                   | Controller image tag (immutable tags are recommended)                                                      | `1.13.1-debian-11-r11` |
 | `controller.image.digest`                                | Controller image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag | `""`                   |
 | `controller.image.pullPolicy`                            | Controller image pull policy                                                                               | `IfNotPresent`         |
 | `controller.image.pullSecrets`                           | Controller image pull secrets                                                                              | `[]`                   |
@@ -145,7 +144,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | `webhook.replicaCount`                                | Number of Webhook replicas                                                                              | `1`                            |
 | `webhook.image.registry`                              | Webhook image registry                                                                                  | `docker.io`                    |
 | `webhook.image.repository`                            | Webhook image repository                                                                                | `bitnami/cert-manager-webhook` |
-| `webhook.image.tag`                                   | Webhook image tag (immutable tags are recommended)                                                      | `1.13.1-debian-11-r10`         |
 | `webhook.image.digest`                                | Webhook image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag | `""`                           |
 | `webhook.image.pullPolicy`                            | Webhook image pull policy                                                                               | `IfNotPresent`                 |
 | `webhook.image.pullSecrets`                           | Webhook image pull secrets                                                                              | `[]`                           |
@@ -217,7 +215,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | `cainjector.replicaCount`                                | Number of CAInjector replicas                                                                              | `1`                   |
 | `cainjector.image.registry`                              | CAInjector image registry                                                                                  | `docker.io`           |
 | `cainjector.image.repository`                            | CAInjector image repository                                                                                | `bitnami/cainjector`  |
-| `cainjector.image.tag`                                   | CAInjector image tag (immutable tags are recommended)                                                      | `1.13.1-debian-11-r9` |
 | `cainjector.image.digest`                                | CAInjector image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag | `""`                  |
 | `cainjector.image.pullPolicy`                            | CAInjector image pull policy                                                                               | `IfNotPresent`        |
 | `cainjector.image.pullSecrets`                           | CAInjector image pull secrets                                                                              | `[]`                  |

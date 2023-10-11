@@ -50,7 +50,7 @@ clusterDomain: cluster.local
 ## ref: https://hub.docker.com/r/bitnami/nginx-ingress-controller/tags/
 ## @param image.registry Nginx Ingress Controller image registry
 ## @param image.repository Nginx Ingress Controller image repository
-## @skip image.tag Nginx Ingress Controller image tag (immutable tags are recommended)
+## @param image.tag Nginx Ingress Controller image tag (immutable tags are recommended)
 ## @param image.digest Nginx Ingress Controller image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy Nginx Ingress Controller image pull policy
 ## @param image.pullSecrets Specify docker-registry secret names as an array

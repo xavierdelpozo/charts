@@ -66,7 +66,7 @@ diagnosticMode:
 ## ref: https://hub.docker.com/r/bitnami/deepspeed/tags/
 ## @param image.registry Deepspeed image registry
 ## @param image.repository Deepspeed image repository
-## @skip image.tag Deepspeed image tag (immutable tags are recommended)
+## @param image.tag Deepspeed image tag (immutable tags are recommended)
 ## @param image.digest Deepspeed image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy Deepspeed image pull policy
 ## @param image.pullSecrets Specify docker-registry secret names as an array
@@ -969,7 +969,7 @@ worker:
 ## ref: https://hub.docker.com/r/bitnami/git/tags/
 ## @param gitImage.registry Git image registry
 ## @param gitImage.repository Git image repository
-## @skip gitImage.tag Git image tag (immutable tags are recommended)
+## @param gitImage.tag Git image tag (immutable tags are recommended)
 ## @param gitImage.digest Git image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param gitImage.pullPolicy Git image pull policy
 ## @param gitImage.pullSecrets Specify docker-registry secret names as an array

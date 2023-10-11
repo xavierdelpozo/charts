@@ -78,7 +78,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | -------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------- |
 | `image.registry`     | phpMyAdmin image registry                                                                                  | `docker.io`            |
 | `image.repository`   | phpMyAdmin image repository                                                                                | `bitnami/phpmyadmin`   |
-| `image.tag`          | phpMyAdmin image tag (immutable tags are recommended)                                                      | `5.2.1-debian-11-r123` |
 | `image.digest`       | phpMyAdmin image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag | `""`                   |
 | `image.pullPolicy`   | Image pull policy                                                                                          | `IfNotPresent`         |
 | `image.pullSecrets`  | Specify docker-registry secret names as an array                                                           | `[]`                   |

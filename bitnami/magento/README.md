@@ -84,7 +84,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------- |
 | `image.registry`                        | Magento image registry                                                                                               | `docker.io`            |
 | `image.repository`                      | Magento image repository                                                                                             | `bitnami/magento`      |
-| `image.tag`                             | Magento image tag (immutable tags are recommended)                                                                   | `2.4.6-debian-11-r113` |
 | `image.digest`                          | Magento image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag              | `""`                   |
 | `image.pullPolicy`                      | Magento image pull policy                                                                                            | `IfNotPresent`         |
 | `image.pullSecrets`                     | Specify docker-registry secret names as an array                                                                     | `[]`                   |
@@ -190,7 +189,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | `mariadb.enabled`                           | Whether to deploy a mariadb server to satisfy the applications database requirements.                   | `true`                  |
 | `mariadb.image.registry`                    | MariaDB image registry                                                                                  | `docker.io`             |
 | `mariadb.image.repository`                  | MariaDB image repository                                                                                | `bitnami/mariadb`       |
-| `mariadb.image.tag`                         | MariaDB image tag (immutable tags are recommended)                                                      | `10.6.15-debian-11-r49` |
 | `mariadb.image.digest`                      | MariaDB image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag | `""`                    |
 | `mariadb.architecture`                      | MariaDB architecture. Allowed values: `standalone` or `replication`                                     | `standalone`            |
 | `mariadb.auth.rootPassword`                 | Password for the MariaDB `root` user                                                                    | `""`                    |

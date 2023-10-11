@@ -64,7 +64,7 @@ diagnosticMode:
 ## ref: https://hub.docker.com/r/bitnami/redis/tags/
 ## @param image.registry Redis&reg; cluster image registry
 ## @param image.repository Redis&reg; cluster image repository
-## @skip image.tag Redis&reg; cluster image tag (immutable tags are recommended)
+## @param image.tag Redis&reg; cluster image tag (immutable tags are recommended)
 ## @param image.digest Redis&reg; cluster image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy Redis&reg; cluster image pull policy
 ## @param image.pullSecrets Specify docker-registry secret names as an array
@@ -1011,7 +1011,7 @@ sysctlImage:
   command: []
   ## @param sysctlImage.registry sysctlImage Init container registry
   ## @param sysctlImage.repository sysctlImage Init container repository
-  ## @skip sysctlImage.tag sysctlImage Init container tag
+  ## @param sysctlImage.tag sysctlImage Init container tag
   ## @param sysctlImage.digest sysctlImage Init container digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
   ## @param sysctlImage.pullPolicy sysctlImage Init container pull policy
   ## @param sysctlImage.pullSecrets Specify docker-registry secret names as an array

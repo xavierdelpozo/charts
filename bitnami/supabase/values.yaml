@@ -2422,7 +2422,7 @@ volumePermissions:
 ## @param psqlImage.registry PostgreSQL client image registry
 ## @param psqlImage.repository PostgreSQL client image repository
 ## @param psqlImage.digest PostgreSQL client image digest (overrides image tag)
-## @skip psqlImage.tag PostgreSQL client image tag (immutable tags are recommended)
+## @param psqlImage.tag PostgreSQL client image tag (immutable tags are recommended)
 ## @param psqlImage.pullPolicy PostgreSQL client image pull policy
 ## @param psqlImage.pullSecrets PostgreSQL client image pull secrets
 ## @param psqlImage.debug Enable PostgreSQL client image debug mode
