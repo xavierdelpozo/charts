@@ -190,6 +190,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `defaultBackend.hostAliases`                           | Add deployment host aliases                                                                                     | `[]`                   |
 | `defaultBackend.image.registry`                        | Default backend image registry                                                                                  | `docker.io`            |
 | `defaultBackend.image.repository`                      | Default backend image repository                                                                                | `bitnami/nginx`        |
+| `defaultBackend.image.tag`                             | Default backend image tag (immutable tags are recommended)                                                      | `1.25.2-debian-11-r34` |
 | `defaultBackend.image.digest`                          | Default backend image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag | `""`                   |
 | `defaultBackend.image.pullPolicy`                      | Image pull policy                                                                                               | `IfNotPresent`         |
 | `defaultBackend.image.pullSecrets`                     | Specify docker-registry secret names as an array                                                                | `[]`                   |

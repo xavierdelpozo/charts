@@ -76,14 +76,14 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ### Fluent Bit parameters
 
-| Name                | Description                                                                                                | Value                 |
-| ------------------- | ---------------------------------------------------------------------------------------------------------- | --------------------- |
-| `image.registry`    | Fluent Bit image registry                                                                                  | `docker.io`           |
-| `image.repository`  | Fluent Bit image repository                                                                                | `bitnami/fluent-bit`  |
-| `image.digest`      | Fluent Bit image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag | `""`                  |
-| `image.pullPolicy`  | image pull policy                                                                                          | `IfNotPresent`        |
-| `image.pullSecrets` | Fluent Bit image pull secrets                                                                              | `[]`                  |
-| `image.debug`       | Enable image debug mode                                                                                    | `false`               |
+| Name                | Description                                                                                                | Value                |
+| ------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------- |
+| `image.registry`    | Fluent Bit image registry                                                                                  | `docker.io`          |
+| `image.repository`  | Fluent Bit image repository                                                                                | `bitnami/fluent-bit` |
+| `image.digest`      | Fluent Bit image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag | `""`                 |
+| `image.pullPolicy`  | image pull policy                                                                                          | `IfNotPresent`       |
+| `image.pullSecrets` | Fluent Bit image pull secrets                                                                              | `[]`                 |
+| `image.debug`       | Enable image debug mode                                                                                    | `false`              |
 
 ### Fluent Bit daemonset configuration
 
