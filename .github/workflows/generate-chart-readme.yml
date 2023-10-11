@@ -39,9 +39,9 @@ jobs:
           charts_dirs_changed="$(echo "$files_changed" | xargs dirname | grep -o "bitnami/[^/]*" | sort | uniq || true)"
           for chart in ${charts_dirs_changed}; do
             echo "Validating README.md for ${chart}"
-            grep --quiet --extended-regexp "@param\s+\w*image.tag" "charts/${chart}/values.yaml" || exit_code=$?
-            if [[ $exit_code -ne 0 ]]; then
-              echo "::error:: Please ensure all image.tag params are skipped (@skip) in the charts/${chart}/values.yaml file"
+            grep --quiet --extended-regexp "@param\s+\w*\.tag" "charts/${chart}/values.yaml" || exit_code=$?
+            if [[ $exit_code -eq 0 ]]; then
+              echo "::error:: Please ensure all *.tag params are skipped (@skip) in the charts/${chart}/values.yaml file"
               exit "$exit_code"
             fi
             echo "Updating README.md for ${chart}"
